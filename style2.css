@@ -1,0 +1,237 @@
+:root {
+    --brown: --brown;
+    --black: #130f40;
+    --light-color: #666;
+    --box-shadow: 0 .1rem 1rem rgba(0, 0, 0.1);
+    --border: 2rem solid rgba(0, 0, 0.1);
+    --outline: .1rem solid rgba(0, 0, 0.1);
+
+}
+.message{
+    position: sticky;
+    top: 50px;
+    left: 0;
+    right: 0;
+    padding: 15px 10px;
+    background-color: #eee;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: var(--box-shadow);
+    font-size: 20px;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+* {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: all.2s linear;
+
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+body {
+    background: beige;
+}
+
+.header {
+    border: 0px solid;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+    background: #ffffff96;
+    box-shadow: var(--box-shadow);
+}
+
+.header .logo {
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+
+.header .logo i {
+    color: var(--black);
+}
+
+.header .navbar a {
+    font-size: 1.7rem;
+    margin: 0 4rem;
+    color: rgba(0, 0, 0, 0.9);
+    font-display: bold;
+
+}
+
+.header .navbar a:hover {
+    color: rgb(64, 255, 47);
+}
+
+.header .icons div {
+    border: 0px solid;
+    height: 4.5rem;
+    width: 4.5rem;
+    line-height: 4.5rem;
+    border-radius: 0.5rem;
+    background: #eee;
+    color: black;
+    font-size: 2rem;
+    margin-right: 0.3rem;
+    text-align: center;
+    cursor: pointer;
+
+}
+
+.header .icons div:hover {
+    background: rgb(64, 255, 47);
+    color: white;
+}
+
+#menu-btn {
+    display: none;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url("all.webp");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    background-color: beige;
+}
+
+.container {
+    max-width: 650px;
+    padding: 28px;
+    margin: 0 28px;
+    box-shadow: 0 15px 20px #9facb9;
+    background-color: white;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+    color: #2f4f4f;
+    padding-bottom: 8px;
+    border-bottom: 1px solid silver;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.input-box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-bottom: 15px;
+}
+
+.input-box:nth-child(2n) {
+    justify-content: end;
+}
+
+.input-box input {
+    height: 40px;
+    width: 95%;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.input-box:is(:focus, :valid) {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+
+}
+
+.alert p {
+    font-size: 14px;
+    font-style: italic;
+    color: dimgray;
+    margin: 5px 0;
+    padding: 10px;
+}
+
+.alert a {
+    text-decoration: none;
+}
+
+.alert a:hover {
+    text-decoration: underline;
+}
+
+.button-container {
+    margin: 15px 0;
+
+}
+
+.button-container button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    display: block;
+    font-size: 20px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, #aa076b, #61045f);
+}
+
+.button-container button:hover {
+    background-image: linear-gradient(to right, #61045f, #aa076b);
+}
+
+@media(max-width:600px) {
+    .container {
+        min-width: 280px;
+    }
+
+    .content {
+        max-height: 380px;
+        overflow: auto;
+    }
+
+    .input-box {
+        margin-bottom: 12px;
+        width: 100%;
+    }
+
+    .input-box:nth-child(2n) {
+        justify-content: space-between;
+    }
+
+    .content::-webkit-scrollbar {
+        width: 0;
+    }
+}
