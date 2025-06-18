@@ -14,6 +14,7 @@ $response = ['success' => false, 'message' => ''];
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     $product_id = (int) $_POST['product_id'];
     $quantity = isset($_POST['quantity']) ? (int) $_POST['quantity'] : 1;
+
     if ($quantity < 1) $quantity = 1;
 
     if (!isset($_SESSION['cart'])) {
@@ -32,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
 
         $stmt->bind_param("i", $product_id);
 
+
         if (!$stmt->execute()) {
             $response['message'] = "DB execute failed: " . $stmt->error;
             echo json_encode($response);
@@ -39,7 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
         }
 
         $result = $stmt->get_result();
+
         if ($product = $result->fetch_assoc()) {
+
             $_SESSION['cart'][$product_id] = [
                 'name' => $product['name'],
                 'price' => $product['price'],
@@ -55,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     }
 
     if (isset($_SESSION['customer_id'])) {
-        $cust_id = $_SESSION['customer_id'];
+        $customer_id = $_SESSION['customer_id'];
 
         $check_stmt = $conn->prepare("SELECT quantity FROM user_carts WHERE user_id = ? AND product_id = ?");
         if (!$check_stmt) {
@@ -63,7 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
             echo json_encode($response);
             exit;
         }
-        $check_stmt->bind_param("ii", $cust_id, $product_id);
+        $check_stmt->bind_param("ii", $customer_id, $product_id);
+
 
         if (!$check_stmt->execute()) {
             $response['message'] = "DB execute failed: " . $check_stmt->error;
@@ -80,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
                 echo json_encode($response);
                 exit;
             }
-            $update_stmt->bind_param("iii", $quantity, $cust_id, $product_id);
+            $update_stmt->bind_param("iii", $quantity, $customer_id, $product_id);
             if (!$update_stmt->execute()) {
                 $response['message'] = "DB execute failed: " . $update_stmt->error;
                 echo json_encode($response);
@@ -94,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
                 echo json_encode($response);
                 exit;
             }
-            $insert_stmt->bind_param("iii", $cust_id, $product_id, $quantity);
+            $insert_stmt->bind_param("iii", $customer_id, $product_id, $quantity);
             if (!$insert_stmt->execute()) {
                 $response['message'] = "DB execute failed: " . $insert_stmt->error;
                 echo json_encode($response);

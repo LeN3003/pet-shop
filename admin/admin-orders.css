@@ -1,0 +1,101 @@
+/* General body styling */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 30px auto;
+  max-width: 900px;
+  padding: 0 15px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Page heading */
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #222;
+}
+
+/* Back to dashboard link */
+a {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #51c2a6;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #44a68d;
+  text-decoration: underline;
+}
+
+/* Orders table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  font-size: 14px;
+}
+
+th {
+  background-color: #51c2a6;
+  color: white;
+  font-weight: 700;
+}
+
+tr:hover {
+  background-color: #f1f8ff;
+}
+
+/* Button to view items */
+button {
+  background-color: #51c2a6;
+  border: none;
+  color: white;
+  padding: 7px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #44a68d;
+}
+
+/* Responsive on smaller screens */
+@media (max-width: 600px) {
+  body {
+    margin: 15px;
+    padding: 0 10px;
+  }
+
+  th,
+  td {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}

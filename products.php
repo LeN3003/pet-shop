@@ -1,7 +1,7 @@
 <?php
 include 'includes/db.php';
 include 'includes/header.php';
-//new added
+
 
 $cart_quantities = [];
 if (isset($_SESSION['customer_id'])) {
@@ -16,13 +16,9 @@ if (isset($_SESSION['customer_id'])) {
     $stmt->close();
 }
 
-//----
-
-
 ?>
-<link rel="stylesheet" href="assets/css/pages/products.css">
 
-<h1>All Pet Products</h1>
+<!-- <h1>All Pet Products</h1> -->
 
 <div class="product-container">
 
@@ -72,24 +68,16 @@ if (isset($_SESSION['customer_id'])) {
         echo '</div>';
     }
 
-    // Render each section
-    renderProductSection("🐶 Dog Food", $dogs_food);
-    renderProductSection("🦴 Dog Accessories", $dogs_accessories);
-    renderProductSection("🐱 Cat Food", $cats_food);
-    renderProductSection("🎀 Cat Accessories", $cats_accessories);
+    renderProductSection("Dog Food", $dogs_food);
+    renderProductSection("Dog Accessories", $dogs_accessories);
+    renderProductSection("Cat Food", $cats_food);
+    renderProductSection("Cat Accessories", $cats_accessories);
     ?>
 </div>
 
 <script>
     const serverCartQuantities = <?= json_encode($cart_quantities) ?>;
 </script>
-
-
-<!-- <?php
-        $page = basename($_SERVER['PHP_SELF'], ".php");
-        if ($page === 'products') {
-            // echo '<script src="assets/js/modules/quantity-controls.js"></script>';
-        }
-        ?> -->
+<script src="assets/js/quantity.js" defer></script>
 
 <?php include 'includes/footer.php'; ?>

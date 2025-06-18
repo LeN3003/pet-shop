@@ -1,0 +1,148 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 20px;
+  color: #333;
+}
+
+/* Headings */
+h1 {
+  color: #222;
+  margin-bottom: 15px;
+  font-size: 2rem;
+}
+
+h2 {
+  color: #444;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons */
+button {
+  background-color: #51c2a6;
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #44a68d;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ccc;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive, scrollable modal content */
+.modal-content {
+  background-color: white;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 380px; /* Fixed and smaller width */
+  max-height: 80vh; /* Limit height to 80% of screen */
+  overflow-y: auto; /* Scroll inside if content is large */
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Form inside modal */
+.modal-content form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 2px;
+  margin-top: 8px;
+}
+
+.modal-content form input {
+  width: 100%;
+  padding: 8px 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Top Navigation Bar */
+.navbar {
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.navbar a {
+  color: #333;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.navbar a:hover {
+  background-color: #e2e6ea;
+}
