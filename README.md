@@ -37,3 +37,22 @@ Usage
 2. For admin access, login via admin-login.php.
 3. Customers can browse products, add to cart, and checkout.
 4. Admin can manage products and view orders.
+
+Screenshots
+
+### Products
+![Products](screenshots/products.png)
+
+### Shopping Cart
+![Cart](screenshots/cart.png)
+
+### All previous orders
+![Orders](screenshots/all-orders.png)
+
+### Admin Dashboard
+![Dashboard](screenshots/admin-dashboard.png)
+
+### Order Summary for Admin
+![OrdersAdmin](screenshots/admin-orders.png)
+
+
