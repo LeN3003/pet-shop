@@ -1,9 +1,16 @@
 <?php
 session_start();
+error_log("Incoming cart request: " . print_r($_POST, true));
+error_log("==== Incoming POST ====");
+error_log(print_r($_POST, true));
+error_log("==== SESSION ====");
+error_log(print_r($_SESSION, true));
+
 include '../includes/db.php';
 
 if (empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest') {
-    header('Location: ../products.php');
+    // header('Location: ../products.php');
+    echo json_encode(['success' => false, 'message' => 'Invalid request: not AJAX']);
     exit;
 }
 
@@ -12,14 +19,49 @@ header('Content-Type: application/json');
 $response = ['success' => false, 'message' => ''];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
-    $product_id = (int) $_POST['product_id'];
-    $quantity = isset($_POST['quantity']) ? (int) $_POST['quantity'] : 1;
 
-    if ($quantity < 1) $quantity = 1;
+    $product_id = (int) $_POST['product_id'];
+
 
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
+
+
+
+    // 👇 Handle remove action
+    // if (isset($_POST['action']) && $_POST['action'] === 'remove') {
+    if (isset($_POST['remove'])) {
+
+
+        // Remove from session cart
+        if (isset($_SESSION['cart'][$product_id])) {
+            unset($_SESSION['cart'][$product_id]);
+        }
+
+        // Remove from database
+        if (isset($_SESSION['customer_id'])) {
+            $customer_id = $_SESSION['customer_id'];
+            $del_stmt = $conn->prepare("DELETE FROM user_carts WHERE user_id = ? AND product_id = ?");
+            $del_stmt->bind_param("ii", $customer_id, $product_id);
+            $del_stmt->execute();
+            $del_stmt->close();
+        }
+
+        $response['success'] = true;
+        $response['message'] = "Product removed from cart.";
+        echo json_encode($response);
+        exit;
+    }
+    $quantity = isset($_POST['quantity']) ? (int) $_POST['quantity'] : 1;
+
+    // if ($quantity < 1) $quantity = 1;
+    if ($quantity < 1) {
+        $response['message'] = "Invalid quantity.";
+        echo json_encode($response);
+        exit;
+    }
+
 
     if (isset($_SESSION['cart'][$product_id])) {
         $_SESSION['cart'][$product_id]['quantity'] = $quantity;
@@ -104,7 +146,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
                 $response['message'] = "DB execute failed: " . $insert_stmt->error;
                 echo json_encode($response);
                 exit;
+            } else {
+                error_log("Inserted into user_carts: user_id=$customer_id, product_id=$product_id, quantity=$quantity");
             }
+
             $insert_stmt->close();
         }
 
@@ -112,7 +157,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     }
 
     $response['success'] = true;
-    $response['message'] = "Product added to cart.";
+    // $response['message'] = "Product added to cart.";
+    $response['message'] = isset($_SESSION['cart'][$product_id]) ? "Cart updated." : "Product added to cart.";
 } else {
     $response['message'] = "Invalid request.";
 }

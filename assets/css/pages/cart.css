@@ -46,8 +46,24 @@ a button:hover {
 }
 
 /* Empty Cart message styling */
-p {
+/* p {
   font-size: 1.2em;
   color: #666;
   margin-top: 20px;
+} */
+
+.clear-cart-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 15px 0;
+  transition: background-color 0.2s ease;
+}
+
+.clear-cart-btn:hover {
+  background-color: #c82333;
 }

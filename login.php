@@ -110,21 +110,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-
-<div class="auth-container">
-  <h2>Login</h2>
-  <?php if (!empty($error)): ?>
-    <div class="error-msg"><?= htmlspecialchars($error) ?></div>
-  <?php endif; ?>
-  <form method="POST" class="auth-form">
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required>
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required>
-    <button type="submit">Login</button>
-  </form>
-  <p>New customer? <a href="register.php">Register here</a></p>
+<div id="page-wrapper">
+  <div class="auth-container">
+    <h2>Login</h2>
+    <?php if (!empty($error)): ?>
+      <div class="error-msg"><?= htmlspecialchars($error) ?></div>
+    <?php endif; ?>
+    <form method="POST" class="auth-form">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p>New customer? <a href="register.php">Register here</a></p>
+  </div>
 </div>
-
 
 <?php include 'includes/footer.php'; ?>
