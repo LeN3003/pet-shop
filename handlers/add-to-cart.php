@@ -1,16 +1,11 @@
 <?php
 session_start();
-error_log("Incoming cart request: " . print_r($_POST, true));
-error_log("==== Incoming POST ====");
-error_log(print_r($_POST, true));
-error_log("==== SESSION ====");
-error_log(print_r($_SESSION, true));
 
 include '../includes/db.php';
 
 if (empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest') {
-    // header('Location: ../products.php');
-    echo json_encode(['success' => false, 'message' => 'Invalid request: not AJAX']);
+    header('Location: ../products.php');
+    // echo json_encode(['success' => false, 'message' => 'Invalid request: not AJAX']);
     exit;
 }
 
@@ -22,15 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
 
     $product_id = (int) $_POST['product_id'];
 
-
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
 
+    // Handle remove action
 
-
-    // 👇 Handle remove action
-    // if (isset($_POST['action']) && $_POST['action'] === 'remove') {
     if (isset($_POST['remove'])) {
 
 
@@ -53,9 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
         echo json_encode($response);
         exit;
     }
+
     $quantity = isset($_POST['quantity']) ? (int) $_POST['quantity'] : 1;
 
-    // if ($quantity < 1) $quantity = 1;
     if ($quantity < 1) {
         $response['message'] = "Invalid quantity.";
         echo json_encode($response);
@@ -157,7 +149,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     }
 
     $response['success'] = true;
-    // $response['message'] = "Product added to cart.";
     $response['message'] = isset($_SESSION['cart'][$product_id]) ? "Cart updated." : "Product added to cart.";
 } else {
     $response['message'] = "Invalid request.";
